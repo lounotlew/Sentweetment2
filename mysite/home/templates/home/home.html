@@ -1,0 +1,23 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+
+<div class="card" style="width: 38rem; height: 11rem;">
+<center>
+  <div class="card-body row h-10 justify-content-center align-items-center">
+  <div class="container">
+    <h5 class="card-title">Enter a Twitter Username:</h5>
+  </div>
+  <div class="input-group mb-3" style="width: 25rem;">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">@</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div class="container">
+    <button type="button" class="btn info">Analyze!</button>
+  </div>
+</center>
+</div>
+
+{% endblock %}
