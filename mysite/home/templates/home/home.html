@@ -8,15 +8,17 @@
   <div class="container">
     <h5 class="card-title">Enter a Twitter Username:</h5>
   </div>
+  <form action="/sentiments">
   <div class="input-group mb-3" style="width: 25rem;">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">@</span>
     </div>
-    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1" name="username">
   </div>
   <div class="container">
-    <button type="button" class="btn info">Analyze!</button>
+    <button type="submit" class="btn info">Analyze!</button>
   </div>
+  </form>
 </center>
 </div>
 

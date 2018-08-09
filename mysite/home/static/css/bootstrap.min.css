@@ -11,35 +11,35 @@
   }
 
   .navbar .navbar-nav .nav-link {
-  color: #ECF2F3;
+    color: #ECF2F3;
   }
 
   .navbar .navbar-nav .nav-link:hover {
-  color: #FFFFFF;
+    color: #FFFFFF;
   }
 
   .navbar .navbar-nav .nav-link.active {
-  font-weight: 500;
+    font-weight: 500;
   }
 
   .card {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
-        margin-top: 40px;
-}
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    margin-top: 50px;
+  }
 
-.button .btn {
+  .button .btn {
 	width: 150px;
 	height: 40px;
-}
+  }
 
-.info {
-  border-color: #1DA1F2;
-  color: dodgerblue
-}
+  .info {
+    border-color: #1DA1F2;
+    color: dodgerblue
+  }
 
-.info:hover {
-  background: #1DA1F2;
-  color: white;
-}
+  .info:hover {
+    background: #1DA1F2;
+    color: white;
+  }
