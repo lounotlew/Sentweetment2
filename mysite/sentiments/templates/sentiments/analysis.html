@@ -3,6 +3,22 @@
 {% block content %}
 
 <p> Hello, World!</p>
-<p>{{ username }}</p>
+<p>Username: {{ username }}</p>
+<p>Avg Polarity: {{ avg_polarity }}</p>
+<p>Top 10 Pos:
+	<ul>
+		{% for item in top_10_pos %}
+		<li>{{ item.0 }} (score: {{ item.2 }}) on {{ item.1 }}</li>
+		{% endfor %}
+	</ul>
+</p>
+
+<p>Top 10 Neg:
+	<ul>
+		{% for item in top_10_neg %}
+		<li>{{ item.0 }} (score: {{ item.2 }}) on {{ item.1 }}</li>
+		{% endfor %}
+	</ul>
+</p>
 
 {% endblock %}
