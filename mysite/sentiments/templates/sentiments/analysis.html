@@ -2,11 +2,12 @@
 
 {% block content %}
 
-   <div class="card flex-row" style="width: 550px;">
+   <div class="card flex-row" style="width: 600px;">
         <div class="card-header border-0">
             <img src="{{ user_img }}" style="width:100px; height:100px;"/>
         </div>
-        <div class="card-block px-2" style="width: 550px;">
+        <div class="card-block px-2" style="width: 600px;">
+        	<pre></pre>
             <center><h5 class="card-title">Sentiment Analysis for @{{ username }}</h5></center>
             <ul>
             	<li>Average Polarity Score: {{ avg_polarity }}</li>
@@ -16,15 +17,31 @@
     </div>
 
 
-
-
-<p>Top 10 Pos:
-	<ul>
+<div class="card text-center" style="width: 800px;">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="#top10pos" style="color:#1DA1F2">Positive Tweets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#top10neg" style="color:#1DA1F2">Negative Tweets</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Top 10 Most Positive Tweets by @{{ username }}</h5>
+    <p class="card-text">
+    	<ol>
 		{% for item in top_10_pos %}
-		<li>{{ item.0 }} (score: {{ item.2 }}) on {{ item.1 }}</li>
+		<li style="text-align: left;">"{{ item.0 }}", on {{ item.1 }} (score: {{ item.2 }})</li>
+		<pre></pre>
 		{% endfor %}
-	</ul>
+	</ol>
 </p>
+  </div>
+</div>
+
+
 
 <p>Top 10 Neg:
 	<ul>
