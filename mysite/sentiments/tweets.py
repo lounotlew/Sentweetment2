@@ -4,6 +4,7 @@
 ###########################################################################################
 
 import tweepy
+from twython import Twython
 import pandas as pd
 import numpy as np
 import re
@@ -14,10 +15,10 @@ import pickle
 
 # Twitter API Credentials. Enter in your dev. account's API keys/secrets.
 
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_secret = ""
+consumer_key = "3daaCRqE9kbiVSxxNjmmx1iGp"
+consumer_secret = "nqaBQPe54hx7sJeFtVWTK8QyhBo5J75nVlqFERQ6SaMFerBb3d"
+access_token = "967529922724966400-AtEXEfM4mxxkhfBtDshgh8eV8ZTimDI"
+access_secret = "CT9biXzWYloFVpTsaYVvfwbGpHHGQo0arS4dnhK7Wo1wA"
 
 # Read in the VADER Lexicon into a pandas dataframe called 'sent'.
 
@@ -119,7 +120,6 @@ def get_hour(day):
    slightly negative, generally negative, and very negative.
    Scale may need readjustments."""
 def get_sentiment(score):
-	
 	# Ranges for score-to-sentiment scale, from the VADER Lexicon documentation.
 	# Negative ranges.
 	if score < -4:
@@ -188,3 +188,11 @@ def get_negative_tweets(data):
 
 	return neg_tweets
 
+
+def get_user_img(username):
+	t = Twython(app_key=consumer_key,
+		app_secret=consumer_secret,
+		oauth_token=access_token,
+		oauth_token_secret=access_secret)
+
+	return t.show_user(screen_name=username)

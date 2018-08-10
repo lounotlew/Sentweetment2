@@ -2,9 +2,22 @@
 
 {% block content %}
 
-<p> Hello, World!</p>
-<p>Username: {{ username }}</p>
-<p>Avg Polarity: {{ avg_polarity }}</p>
+   <div class="card flex-row" style="width: 550px;">
+        <div class="card-header border-0">
+            <img src="{{ user_img }}" style="width:100px; height:100px;"/>
+        </div>
+        <div class="card-block px-2" style="width: 550px;">
+            <center><h5 class="card-title">Sentiment Analysis for @{{ username }}</h5></center>
+            <ul>
+            	<li>Average Polarity Score: {{ avg_polarity }}</li>
+            	<li>@{{ username }}'s tweets are {{ sentiment }}</li>
+        	</ul>
+        </div>
+    </div>
+
+
+
+
 <p>Top 10 Pos:
 	<ul>
 		{% for item in top_10_pos %}
