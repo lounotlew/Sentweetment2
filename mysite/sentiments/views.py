@@ -25,7 +25,15 @@ def index(request):
 	img = tweets.get_user_img(username)['profile_image_url']
 	user_img = tweets.get_user_img(username)['profile_image_url'][0:len(img)-11] + ".jpg"
 
+
+	#
+	sentiment_data['tweet_date'] = sentiment_data['pst_time'].dt.date
+	df = sentiment_data.groupby('tweet_date').sum().reset_index(drop = False)
+
+	labels = df['tweet_date'].tolist()
+	values = df['polarity'].tolist()
+
 	context = {"username": username, "avg_polarity": avg_polarity, "sentiment": sentiment,
-		"top_10_pos": top_10_pos, "top_10_neg": top_10_neg,"user_img": user_img}
+		"top_10_pos": top_10_pos, "top_10_neg": top_10_neg,"user_img": user_img, "labels": labels, "values": values}
 
 	return render(request, "sentiments/analysis.html", context = context)
