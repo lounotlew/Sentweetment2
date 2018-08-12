@@ -2,19 +2,20 @@
 
 {% block content %}
 
-   <div class="card flex-row" style="width: 600px;">
-        <div class="card-header border-0">
-            <img src="{{ user_img }}" style="width:100px; height:100px;"/>
-        </div>
-        <div class="card-block px-2" style="width: 600px;">
-        	<pre></pre>
-            <center><h5 class="card-title">Sentiment Analysis for @{{ username }}</h5></center>
-            <ul>
-            	<li>Average Polarity Score: {{ avg_polarity }}</li>
-            	<li>@{{ username }}'s account is {{ sentiment }}</li>
-        	</ul>
-        </div>
+<div class="card flex-row" style="width: 600px;">
+    <div class="card-header border-0">
+        <img src="{{ user_img }}" style="width:100px; height:100px;"/>
     </div>
+    <div class="card-block px-2" style="width: 600px;">
+    <pre></pre>
+    <center><h5 class="card-title">Sentiment Analysis for @{{ username }}</h5></center>
+        <ul>
+        	<li>Average Polarity Score: {{ avg_polarity }}</li>
+        	<li>@{{ username }}'s account is {{ sentiment }}</li>
+        	<li><a href="/sentiments/graphs/?username={{ username }}">Click here</a> to view useful statistics about @{{ username }}.</li>
+        </ul>
+    </div>
+</div>
 
 <div class="card text-center" style="width: 800px;">
   <div class="card-body">
@@ -49,8 +50,6 @@
 
 </html>
  
-
-
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script>
    $("#actionA").on("click", function(){
