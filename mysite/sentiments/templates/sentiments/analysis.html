@@ -13,9 +13,11 @@
         	<li>Average Polarity Score: {{ avg_polarity }}</li>
         	<li>@{{ username }}'s account is {{ sentiment }}</li>
         	<li><a href="/sentiments/graphs/?username={{ username }}">Click here</a> to view useful statistics about @{{ username }}.</li>
+        	<li><a href="/sentiments/all-tweets/?username={{ username }}">Click here</a> to view all analyzed tweets.</li>
         </ul>
     </div>
 </div>
+  
 
 <div class="card text-center" style="width: 800px;">
   <div class="card-body">

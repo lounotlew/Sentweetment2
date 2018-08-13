@@ -1,0 +1,20 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+
+<div class="card text-center" style="width: 800px;">
+  <div class="card-body">
+  	<h5 class="card-title">All Analyzed Tweets by @{{ username }}</h5>
+  	<p class="card-text">
+  		<p><i>In Ascending Polarity Scores:</i></p>
+    	<ol>
+			{% for item in data %}
+			<li style="text-align: left;">"{{ item.0 }}", on {{ item.1 }} (score: {{ item.2 }})</li>
+			<pre></pre>
+			{% endfor %}
+		</ol>
+  	</p>
+  </div>
+</div>
+
+{% endblock %}

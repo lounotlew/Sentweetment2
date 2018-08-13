@@ -104,3 +104,38 @@ def graphs(request):
 
 	return render(request, "sentiments/graphs.html", context)
 
+
+#
+def all_tweets(request):
+	username = request.session['username']
+	sentiment_data = request.session['sentiment_data']
+
+	# Sort sentiment_data by polarity, in ascending order.
+	sentiment_data = sentiment_data.sort_values('polarity', ascending = True)
+
+	tweets = sentiment_data['text'].tolist()
+	time = sentiment_data['pst_time'].tolist()
+	polarity = [round(x, 2) for x in sentiment_data['polarity'].tolist()]
+
+	data = zip(tweets, time, polarity)
+
+	context = {"username": username, "data": data}
+
+	return render(request, "sentiments/all-tweets.html", context = context)
+
+
+#
+def searched_tweets(request):
+	
+
+
+
+	return render(request, "searched-tweets.html")
+
+
+
+
+
+
+
+
