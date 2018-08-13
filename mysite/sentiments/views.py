@@ -28,7 +28,10 @@ def index(request):
 	# sentiment_data columns: ['text' 'retweet_count' 'time' 'location' 'pst_time' 'hour' 'no_punc', 'polarity']
 	sentiment_data = tweets.create_tweet_df(twitter_data)
 
+	num_tweets = len(sentiment_data)
+
 	avg_polarity = round(statistics.mean(sentiment_data['polarity'].tolist()), 4)
+	median_polarity = statistics.median(sentiment_data['polarity'].tolist())
 	sentiment = tweets.get_sentiment(avg_polarity)
 
 	# Top 10 positive/negative tweets.
@@ -44,7 +47,13 @@ def index(request):
 	sentiment_data['tweet_date'] = sentiment_data['pst_time'].dt.date
 	df = sentiment_data.groupby('tweet_date').mean().reset_index(drop = False)
 
+	polarity_stats = {'totalAvgPolarity': avg_polarity, 'medianTweetPolarity': median_polarity}
+
+	request.session['username'] = username
 	request.session['df'] = df
+	request.session['sentiment_data'] = sentiment_data
+	request.session['polarity_stats'] = polarity_stats
+	request.session['num_tweets'] = num_tweets
 
 	context = {"username": username, "avg_polarity": avg_polarity, "sentiment": sentiment,
 		"top_10_pos": top_10_pos, "top_10_neg": top_10_neg,"user_img": user_img}
@@ -54,22 +63,44 @@ def index(request):
 
 # 
 def graphs(request):
+	username = request.session['username']
+
 	df = request.session['df']
+	sentiment_data = request.session['sentiment_data']
 
-	avg_polarity = round(statistics.mean(df['polarity'].tolist()), 4)
+	organized_dates = sentiment_data.sort_values('pst_time', ascending = True).reset_index(drop = True)['pst_time'].dt.date.tolist()
 
-	values = [round(x, 2) for x in df['polarity'].tolist()]
+	diff = organized_dates[-1] - organized_dates[0]
+	delta = diff.days
+
+	# Labels: tweet times aggregated by their dates, with time dropped. (i.e. 3-14-2018 3:00 PM and 3-14-2018 1:00 AM grouped to 3-14-2018).
 	labels = [x.isoformat() for x in df['tweet_date'].tolist()]
-
+	# Values: Average polarity scores per tweet date (items of labels).
+	values = [round(x, 2) for x in df['polarity'].tolist()]
+	# Convert labels to an integer as the # of seconds after 1970-1-1 so it can be JSONified.
 	series = [[((datetime.datetime.strptime(x, '%Y-%m-%d'))-datetime.datetime(1970,1,1)).total_seconds()*1000, y] for x, y in zip(labels, values)]
 
-	context = {"data": json.dumps(series), "username": request.GET['username']}
+	# Round the values of SENTIMENT_DATA from views() to the nearest integer, and group by their counts.
+	# Use this column to get a distribution of polarity scores.
+	sentiment_data['rounded_pol'] = sentiment_data['polarity'].apply(lambda x: round(x))
+	distribution = sentiment_data.groupby('rounded_pol').count().sort_index(ascending = True)
+
+	# Distribution of polarity scores rounded to nearest integer.
+	# Polarity bins converted to string for Highcharts.
+	grouped_polarities = [str(x) for x in distribution.index.tolist()]
+	counts = [int(x) for x in distribution['text'].tolist()]
+
+	# Statistics.
+	totalAvgPolarity = request.session['polarity_stats']['totalAvgPolarity']
+	dailyAvgPolarity = round(statistics.mean(df['polarity'].tolist()), 4)
+	medianTweetPolarity = request.session['polarity_stats']['medianTweetPolarity']
+	medianDailyAvgPolarity = round(statistics.median(df['polarity'].tolist()), 4)
+
+	num_tweets = request.session['num_tweets']
+
+	context = {"data": json.dumps(series), "categories": json.dumps(grouped_polarities), "counts": json.dumps(counts), "username": username,
+		"totalAvgPolarity": totalAvgPolarity, "dailyAvgPolarity": dailyAvgPolarity, "medianTweetPolarity": medianTweetPolarity,
+		"medianDailyAvgPolarity": medianDailyAvgPolarity, "num_tweets": num_tweets, "delta": delta}
 
 	return render(request, "sentiments/graphs.html", context)
-
-
-
-
-
-
 
