@@ -1,1 +1,81 @@
-<p>Hello</p>
+{% extends "home/header.html" %}
+
+{% block content %}
+
+<div class="card text-center" style="width: 500px;">
+  <div class="card-body">
+  	<h5 class="card-title">@{{ username }}'s Polarity Stats at a Glance</h5>
+  	<p class="card-text">
+    	<ul>
+    		<li style="text-align: left;">Total Average Polarity: </li>
+    		<li style="text-align: left;">Daily Average Polarity: </li>
+    		<li style="text-align: left;">Median Tweet Polarity: </li>
+    		<li style="text-align: left;">Median Daily Avg. Polarity: </li>
+		</ul>
+  	</p>
+  </div>
+</div>
+
+<br />
+
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+  	var data = {{ data|safe }};
+  	var data1 = 
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Polarity Trend Graph'
+    },
+    subtitle: {
+        text: 'Daily Average Polarity Over Time'
+    },
+    xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: {
+            month: '%e. %b %Y',
+            year: '%Y'
+        },
+        title: {
+            text: 'Tweet Date'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Total Tweet Polarity'
+        }
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x:%e. %b %Y}: {point.y:.2f}'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    colors: ['#6CF', '#39F', '#06C', '#036', '#000'],
+
+    // Define the data points. All series have a dummy year
+    // of 1970/71 in order to be compared on the same x axis. Note
+    // that in JavaScript, months start at 0 for January, 1 for February etc.
+    series: [{
+        name: "Daily Average Tweet Polarity",
+        data: data
+    }]
+});
+</script>
+
+<br />
+
+
+
+{% endblock %}
