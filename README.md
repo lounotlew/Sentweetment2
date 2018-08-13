@@ -22,7 +22,7 @@ Required packages/frameworks:
 - ``pandas``: (``pip3 install pandas``)
 - ``tweepy``:(``pip3 install tweepy``)
 - ``twython``: (``pip3 install twython``)
-- ``Canvas.js``: (use a CDN or download the .js file)
+- ``Highcharts``: (use a CDN or download the .js file)
 
 To view this website, please visit [placeholder link]().
 
@@ -34,4 +34,4 @@ References to the libraries and packages used in Sentweetment 2:
 2) ``pandas``: https://pandas.pydata.org/
 3) ``tweepy``: http://www.tweepy.org/
 4) ``twython``: https://twython.readthedocs.io/en/latest/
-4) ``Canvas.js``: https://canvasjs.com/
+4) ``Highcharts``: https://www.highcharts.com/
