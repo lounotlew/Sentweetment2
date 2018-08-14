@@ -61,7 +61,7 @@ def index(request):
 	return render(request, "sentiments/analysis.html", context = context)
 
 
-# 
+# View controller for 
 def graphs(request):
 	username = request.session['username']
 
