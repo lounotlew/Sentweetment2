@@ -8,7 +8,7 @@
     </div>
     <div class="card-block px-2" style="width: 600px;">
     <pre></pre>
-    <center><h5 class="card-title">Sentiment Analysis for @{{ username }}</h5></center>
+    <h5 class="card-title">&nbsp;&nbsp;&nbsp;Sentiment Analysis for @{{ username }}</h5>
         <ul>
         	<li>Average Polarity Score: {{ avg_polarity }}</li>
         	<li>@{{ username }}'s account is {{ sentiment }}</li>
@@ -17,7 +17,71 @@
         </ul>
     </div>
 </div>
-  
+
+
+<div class="card flex-row" style="width: 600px;">
+    <div class="card-block px-2" style="width: 600px;">
+    <pre></pre>
+    <center><h5 class="card-title">Search Analyzed Tweets by Dates</h5></center>
+    <pre></pre>
+    <form action="/">
+    <center>From: <input data-date-format="mm/dd/yyyy" id="datepicker" name="start_date">
+    	Until: <input data-date-format="mm/dd/yyyy" id="datepicker1" name="end_date"></center>
+    <pre></pre>
+    <center><button type="submit" class="btn info">Search!</button></center>
+    </form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<style type="text/css">
+        // solution 1:
+        .datepicker {
+            font-size: 0.875em;
+        }
+        /* solution 2: the original datepicker use 20px so replace with the following:*/
+        
+        .datepicker td, .datepicker th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        .datepicker1 {
+            font-size: 0.875em;
+        }
+        /* solution 2: the original datepicker use 20px so replace with the following:*/
+        
+        .datepicker1 td, .datepicker1 th {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        
+    </style>
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker').datepicker("setDate", new Date());
+</script>
+
+<script type="text/javascript">
+    $('#datepicker1').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker1').datepicker("setDate", new Date());
+</script>
+
+    </div>
+</div>
+
+
 
 <div class="card text-center" style="width: 800px;">
   <div class="card-body">

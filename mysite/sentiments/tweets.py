@@ -165,7 +165,7 @@ def get_positive_tweets(data):
 	df = data.sort_values('polarity', ascending = False)
 
 	tweets = df['text'].tolist()[0:10]
-	dates = df['time'].tolist()[0:10]
+	dates = df['pst_time'].tolist()[0:10]
 	polarities = [round(x, 2) for x in df['polarity'].tolist()[0:10]]
 
 	pos_tweets = [(x, y, z) for x, y, z in zip(tweets, dates, polarities)]
@@ -181,7 +181,7 @@ def get_negative_tweets(data):
 	df = data.sort_values('polarity', ascending = True)
 
 	tweets = df['text'].tolist()[0:10]
-	dates = df['time'].tolist()[0:10]
+	dates = df['pst_time'].tolist()[0:10]
 	polarities = [round(x, 2) for x in df['polarity'].tolist()[0:10]]
 
 	neg_tweets = [(x, y, z) for x, y, z in zip(tweets, dates, polarities)]

@@ -96,11 +96,15 @@ def graphs(request):
 	medianTweetPolarity = request.session['polarity_stats']['medianTweetPolarity']
 	medianDailyAvgPolarity = round(statistics.median(df['polarity'].tolist()), 4)
 
+	sd_allTweets = round(statistics.stdev(sentiment_data['polarity'].tolist()), 4)
+	sd_dailyAvgTweets = round(statistics.stdev(df['polarity'].tolist()), 4)
+
 	num_tweets = request.session['num_tweets']
 
 	context = {"data": json.dumps(series), "categories": json.dumps(grouped_polarities), "counts": json.dumps(counts), "username": username,
 		"totalAvgPolarity": totalAvgPolarity, "dailyAvgPolarity": dailyAvgPolarity, "medianTweetPolarity": medianTweetPolarity,
-		"medianDailyAvgPolarity": medianDailyAvgPolarity, "num_tweets": num_tweets, "delta": delta}
+		"medianDailyAvgPolarity": medianDailyAvgPolarity, "num_tweets": num_tweets, "sd_allTweets": sd_allTweets, "sd_dailyAvgTweets": sd_dailyAvgTweets,
+		"delta": delta}
 
 	return render(request, "sentiments/graphs.html", context)
 
@@ -126,7 +130,7 @@ def all_tweets(request):
 
 #
 def searched_tweets(request):
-	
+
 
 
 

@@ -13,6 +13,8 @@
     		<li style="text-align: left;">Daily Average Polarity: <strong>{{ dailyAvgPolarity }}</strong></li>
     		<li style="text-align: left;">Median of All Polarity Scores: <strong>{{ medianTweetPolarity }}</strong></li>
     		<li style="text-align: left;">Median of Daily Avg. Polarity Scores: <strong>{{ medianDailyAvgPolarity }}</strong></li>
+            <li style="text-align: left;">Standard Deviation (all tweet polarities): <strong>{{ sd_allTweets }}</strong></li>
+            <li style="text-align: left;">Standard Deviation (daily avg. polarities): <strong>{{ sd_dailyAvgTweets }}</strong></li>
 		</ul>
   	</p>
   </div>
@@ -20,6 +22,7 @@
 
 <br />
 <br />
+
 
 <div id="container"></div>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
