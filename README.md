@@ -3,7 +3,7 @@
 
 ### Description
 
-Sentweetment 2 is a Django web application with a relatively minimal and simple user interface for performing sentiment analysis on Twitter accounts (users). Using the [NLTK VADER Lexicon](https://github.com/cjhutto/vaderSentiment), Sentweetment 2 tokenizes each tweet made by a user (for a max. of 200 tweets, limited by the Twitter API) to individual words, and applies a polarity score to each word. Then, these individual scores are aggregated per-tweet to give an overall tweet polarity score. These scores are also used to calculate an overall user polarity score (by their average), and ultimately the general sentiment of a Twitter account/user. All of these operations are performed through [``pandas``](https://pandas.pydata.org/).
+Sentweetment 2 is a Django web application with a relatively minimal and simple user interface for performing sentiment analysis on Twitter accounts (users). Using the [VADER Lexicon](https://github.com/cjhutto/vaderSentiment), Sentweetment 2 tokenizes each tweet made by a user (for a max. of 200 tweets, limited by the Twitter API) to individual words, and applies a polarity score to each word. Then, these individual scores are aggregated per-tweet to give an overall tweet polarity score. These scores are also used to calculate an overall user polarity score (by their average), and ultimately the general sentiment of a Twitter account/user. All of these operations are performed through [``pandas``](https://pandas.pydata.org/).
 
 This methodology is based on [UC Berkeley's Data Science 100 Project 1: "Trump, Twitter, and Text"](https://github.com/cjhutto/vaderSentiment).
 
