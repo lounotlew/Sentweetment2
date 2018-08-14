@@ -130,16 +130,41 @@ def all_tweets(request):
 
 #
 def searched_tweets(request):
+	try:
+		start_date = datetime.datetime.strptime(request.GET['start_date'], "%m/%d/%Y")
+		end_date = datetime.datetime.strptime(request.GET['end_date'], "%m/%d/%Y")
 
+		if end_date < start_date:
+			messages.error(request, "Those are invalid dates.")
+			return redirect(request.META.get('HTTP_REFERER','/'))
 
+	except:
+		return redirect(request.META.get('HTTP_REFERER','/'))
 
+	username = request.session['username']
 
-	return render(request, "searched-tweets.html")
+	df = request.session['sentiment_data']
 
+	filtered_df = df[(df['pst_time'] >= request.GET['start_date']) & (df['pst_time'] <= request.GET['end_date'])]
 
+	if len(filtered_df) == 0:
+		messages.error(request, "There are no tweets by " + "@" + request.session['username'] + " during that time.")
+		return redirect(request.META.get('HTTP_REFERER','/'))
 
+	else:
+		filtered_df.sort_values('pst_time', ascending = True, inplace = True)
 
+		tweets = filtered_df['text'].tolist()
+		dates = filtered_df['pst_time'].tolist()
+		polarities = filtered_df['polarity'].tolist()
 
+		numTweets = len(tweets)
+		avgPol = round(statistics.mean(polarities), 4)
+		medPol = round(statistics.median(polarities), 4)
+		sdPol = round(statistics.stdev(polarities), 4)
 
+		context = {"data": zip(tweets, dates, polarities), "username": username, "numTweets": numTweets, "avgPol": avgPol,
+			"medPol": medPol, "sdPol": sdPol, "start_date": request.GET['start_date'], "end_date": request.GET['end_date']}
 
+	return render(request, "sentiments/searched-tweets.html", context = context)
 

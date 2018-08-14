@@ -1,0 +1,48 @@
+{% extends "home/header.html" %}
+
+{% block content %}
+
+<div class="card text-center" style="width: 500px;">
+  <div class="card-body">
+  	<h5 class="card-title">@{{ username }}'s Tweets: {{ start_date }} to {{ end_date }}</h5>
+  	<p class="card-text">
+  		<ul style="text-align: center; list-style-position: inside;">
+  			<li style="text-align: left;">Number of Tweets: <strong>{{ numTweets }}</strong></li>
+  			<li style="text-align: left;">Average Polarity: <strong>{{ avgPol }}</strong></li>
+  			<li style="text-align: left;">Median Polarity: <strong>{{ medPol }}</strong></li>
+  			<li style="text-align: left;">Standard Deviation: <strong>{{ sdPol }}</strong></li>
+    	</ul>
+  	</p>
+  </div>
+</div>
+
+<div class="card text-center" style="width: 800px;">
+  <div class="card-body">
+  	<h5 class="card-title">Tweets in Ascending Time (PST)</h5>
+  	<p class="card-text">
+    	<ol>
+			{% for item in data %}
+			<li style="text-align: left;">"{{ item.0 }}", on {{ item.1 }} (score: {{ item.2 }})</li>
+			<pre></pre>
+			{% endfor %}
+		</ol>
+  	</p>
+  </div>
+</div>
+ 
+</body>
+
+</html>
+ 
+<!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+   $("#actionA").on("click", function(){
+    $("#tweetcontent").load("top10pos.html #");
+  });
+
+  $("#actionB").on("click", function(){
+    $("#tweetcontent").load("https://www.html5rocks.com/en/tutorials/cors/");
+  });
+</script> -->
+
+{% endblock %}

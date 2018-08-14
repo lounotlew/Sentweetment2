@@ -2,6 +2,15 @@
 
 {% block content %}
 
+{% if messages %}
+  {% for msg in messages %}
+    <div class="alert alert-info alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{msg.message}}
+    </div>
+  {% endfor %}
+{% endif %}
+
 <div class="card flex-row" style="width: 600px;">
     <div class="card-header border-0">
         <img src="{{ user_img }}" style="width:100px; height:100px;"/>
@@ -22,9 +31,9 @@
 <div class="card flex-row" style="width: 600px;">
     <div class="card-block px-2" style="width: 600px;">
     <pre></pre>
-    <center><h5 class="card-title">Search Analyzed Tweets by Dates</h5></center>
+    <center><h5 class="card-title">Search Analyzed Tweets by Date</h5></center>
     <pre></pre>
-    <form action="/">
+    <form action="/sentiments/searched-tweets/?username={{ username }}">
     <center>From: <input data-date-format="mm/dd/yyyy" id="datepicker" name="start_date">
     	Until: <input data-date-format="mm/dd/yyyy" id="datepicker1" name="end_date"></center>
     <pre></pre>
