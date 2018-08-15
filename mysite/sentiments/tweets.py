@@ -157,6 +157,7 @@ def get_sentiment(score):
 	elif score > 4:
 		return "extremely positive."
 
+
 """Return a list of tuples of top 10 most positive tweets and their dates, from the
    selected user's Twitter DATA."""
 def get_positive_tweets(data):
@@ -189,6 +190,7 @@ def get_negative_tweets(data):
 	return neg_tweets
 
 
+"""Use Twython to get the user with USERNAME's Twitter profile image link."""
 def get_user_img(username):
 	t = Twython(app_key=consumer_key,
 		app_secret=consumer_secret,
@@ -196,3 +198,4 @@ def get_user_img(username):
 		oauth_token_secret=access_secret)
 
 	return t.show_user(screen_name=username)
+

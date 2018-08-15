@@ -1,6 +1,7 @@
 from django.urls import include, path, re_path
 from . import views
 
+# URL patterns for pages related to the sentiment app.
 urlpatterns = [
 	path('', views.index, name = 'index'),
 	re_path(r'graphs/.*', views.graphs, name = 'graphs'),

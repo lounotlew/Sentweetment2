@@ -9,7 +9,11 @@ import statistics
 from . import tweets
 # Create your views here.
 
-# 
+
+"""Django view for the main sentiment analysis page. Displays avg. total tweet polarity, sentiment (see tweets.py for scale),
+   and 3 links: displaying more detailed statistics, displaying all analyzed tweets, and displaying tweets filtered by date.
+   HTML template posts to graphs(), all_tweets(), and searched_tweets().
+   Request from home.index()."""
 def index(request):
 	try:
 		# Check if the username is valid, i.e. if tweepy actually returns any data.
@@ -49,6 +53,7 @@ def index(request):
 
 	polarity_stats = {'totalAvgPolarity': avg_polarity, 'medianTweetPolarity': median_polarity}
 
+	# Save useful data to session variables.
 	request.session['username'] = username
 	request.session['df'] = df
 	request.session['sentiment_data'] = sentiment_data
@@ -61,7 +66,10 @@ def index(request):
 	return render(request, "sentiments/analysis.html", context = context)
 
 
-# View controller for 
+"""Django view for displaying detailed statistics: total tweet avg./daily avg. polarity mean, median, and SD. Also shows number
+   of tweets analyzed (usually 200) and the # of days between the first and last analyzed tweets.
+   Renders a daily avg. polarity trend graph and polarity bin distribution plot using Highcharts.
+   Request from index() HTML template."""
 def graphs(request):
 	username = request.session['username']
 
@@ -109,7 +117,8 @@ def graphs(request):
 	return render(request, "sentiments/graphs.html", context)
 
 
-#
+"""Django view for displaying all tweets analyzed in index(). Tweets organized by polarity, from lowest to highest.
+   Request from index() HTML template."""
 def all_tweets(request):
 	username = request.session['username']
 	sentiment_data = request.session['sentiment_data']
@@ -128,7 +137,10 @@ def all_tweets(request):
 	return render(request, "sentiments/all-tweets.html", context = context)
 
 
-#
+"""Django view for displaying all tweets in the date range selected in the index() template (analysis.html).
+   Throws error if end_date is earlier than start_date, or if there are no tweets in the selected range.
+   Tweets organized by ascending PST time, farthest to closest.
+   Request from index() HTML template."""
 def searched_tweets(request):
 	try:
 		start_date = datetime.datetime.strptime(request.GET['start_date'], "%m/%d/%Y")
