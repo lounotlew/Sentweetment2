@@ -15,7 +15,7 @@ This web application is mostly based on an earlier project I did, [Sentweetment]
 
 ### Installation
 
-Sentweetment2 is available on http://loutnotlew.pythonanywhere.com.
+Sentweetment2 is available on http://lounotlew.pythonanywhere.com/.
 
 If you want to run it on your local machine (Sentweetment 2 was written in Python 3.6, and will not work with Python 2):
 
