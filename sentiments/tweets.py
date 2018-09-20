@@ -15,10 +15,10 @@ import pickle
 
 # Twitter API Credentials. Enter in your dev. account's API keys/secrets.
 
-consumer_key = ""
-consumer_secret = ""
-access_token = ""
-access_secret = ""
+consumer_key = "3daaCRqE9kbiVSxxNjmmx1iGp"
+consumer_secret = "nqaBQPe54hx7sJeFtVWTK8QyhBo5J75nVlqFERQ6SaMFerBb3d"
+access_token = "967529922724966400-AtEXEfM4mxxkhfBtDshgh8eV8ZTimDI"
+access_secret = "CT9biXzWYloFVpTsaYVvfwbGpHHGQo0arS4dnhK7Wo1wA"
 
 # Read in the VADER Lexicon into a pandas dataframe called 'sent'.
 
