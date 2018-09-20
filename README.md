@@ -15,7 +15,9 @@ This web application is mostly based on an earlier project I did, [Sentweetment]
 
 ### Installation
 
-Sentweetment 2 was written in Python 3.6, and may not work with Python 2.
+Sentweetment2 is available on http://loutnotlew.pythonanywhere.com.
+
+If you want to run it on your local machine (Sentweetment 2 was written in Python 3.6, and will not work with Python 2):
 
 Required packages/frameworks:
 - ``django``: (``pip3 install django``)
@@ -24,7 +26,11 @@ Required packages/frameworks:
 - ``twython``: (``pip3 install twython``)
 - ``Highcharts``: (use a CDN or download the .js file)
 
-To view this website, please visit [placeholder link]().
+In the ``.../Sentweetment2`` directory, run:
+
+```python
+python manage.py runserver
+```
 
 ### References
 
