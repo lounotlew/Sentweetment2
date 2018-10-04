@@ -7,7 +7,7 @@ Sentweetment 2 is a Django web application with a relatively minimal and simple 
 
 This methodology is based on [UC Berkeley's Data Science 100 Project 1: "Trump, Twitter, and Text"](https://github.com/DS-100/sp18/blob/master/proj/proj1/proj1.ipynb).
 
-Although context isn't taken into account (yet), the general idea is that the more positive/negative words a tweet contains, the more likely it is that that tweet is positive/negative.
+The general idea is that the more positive/negative words a tweet contains (in context of social media), the more likely it is that that tweet is positive/negative.
 
 The user interface displays a simple average tweet polarity score and a sentiment (e.g. positive, slightly negative, extremely positive) at a glance, and optionally offers a more detailed analysis, such as polarity score distributions, trend graphs, and useful statistics.
 
