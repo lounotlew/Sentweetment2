@@ -13,10 +13,6 @@ The user interface displays a simple average tweet polarity score and a sentimen
 
 This web application is mostly based on an earlier project I did, [Sentweetment](https://github.com/lounotlew/Sentweetment), and is essentially a port from a ``tkinter`` interface to a Django web interface.
 
-### Installation
-
-Sentweetment2 is available on http://lounotlew.pythonanywhere.com/.
-
 If you want to run it on your local machine (Sentweetment 2 was written in Python 3.6, and will not work with Python 2):
 
 Required packages/frameworks:
